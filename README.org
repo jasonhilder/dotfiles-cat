@@ -1,0 +1,20 @@
+#+TITLE: Readme
+#+AUTHOR: Karolina Derwich
+
+* Dotfiles
+
+| theme          | nord        |
+|----------------+-------------|
+| window manager | qtile       |
+|----------------+-------------|
+| shell          | fish        |
+|----------------+-------------|
+| terminal       | kitty       |
+|----------------+-------------|
+| text editor    | doom emacs  |
+|----------------+-------------|
+| music player   | mpd/ncmpcpp |
+|----------------+-------------|
+| launcher       | rofi        |
+|----------------+-------------|
+| notifications  | dunst       |
