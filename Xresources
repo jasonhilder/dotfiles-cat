@@ -1,0 +1,101 @@
+!! Nord
+
+! #define nord0 #2E3440
+! #define nord1 #3B4252
+! #define nord2 #434C5E
+! #define nord3 #4C566A
+! #define nord4 #D8DEE9
+! #define nord5 #E5E9F0
+! #define nord6 #ECEFF4
+! #define nord7 #8FBCBB
+! #define nord8 #88C0D0
+! #define nord9 #81A1C1
+! #define nord10 #5E81AC
+! #define nord11 #BF616A
+! #define nord12 #D08770
+! #define nord13 #EBCB8B
+! #define nord14 #A3BE8C
+! #define nord15 #B48EAD
+
+! *.foreground:   nord4
+! *.background:   nord0
+! *.cursorColor:  nord4
+! *fading: 35
+! *fadeColor: nord3
+
+! *.color0: nord1
+! *.color1: nord11
+! *.color2: nord14
+! *.color3: nord13
+! *.color4: nord9
+! *.color5: nord15
+! *.color6: nord8
+! *.color7: nord5
+! *.color8: nord3
+! *.color9: nord11
+! *.color10: nord14
+! *.color11: nord13
+! *.color12: nord9
+! *.color13: nord15
+! *.color14: nord7
+! *.color15: nord6
+
+
+!! Catpuccin
+
+*background: #1E1E28
+*foreground: #DADAE8
+
+! Black + dark black
+*color0: #6E6C7E
+*color8: #6E6C7E
+
+! Red
+*color1: #E38C8F
+*color9: #E38C8F
+
+! Green
+*color2: #B1E3AD
+*color10: #B1E3AD
+
+! Yellow
+*color3: #EBDDAA
+*color11:  #EBDDAA
+
+! Blue
+*color4: #A4B9EF
+*color12: #A4B9EF
+
+! Magenta
+*color5: #C6AAE8
+*color13: #C6AAE8
+
+! Pink
+*color6: #E5B4E2
+*color14: #E5B4E2
+
+! Whites
+*color7: #DADAE8
+*color15: #DADAE8
+
+
+!! xterm
+
+xterm*font: mononoki-10
+
+!!!!! urxvt
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+URxvt.font: xft:mononoki Nerd Font:size=10
+
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
