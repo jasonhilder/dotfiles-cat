@@ -92,35 +92,46 @@ keys = [
 ]
 
 from libqtile.config import Group, Match
-#groups = [Group("1", label="", layout='monadtall'),
-#          Group("2", label="", layout='monadtall'),
-#          Group("3", label="", layout='monadtall'),
-#          Group("4", label="", layout='monadtall'),
-#          Group("5", label="", layout='monadtall'),
-#          Group("6", label="", layout='monadtall'),
-#          Group("7", label="", layout='monadtall'),
-#          Group("8", label="", layout='monadtall'),
-#          Group("9", label="", layout='monadwide')]
 
-#groups = [Group("1", label="0x1", layout='monadtall'),
+#groups = [Group("1", label="0x1", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
 #          Group("2", label="0x2", layout='monadtall'),
-#          Group("3", label="0x3", layout='monadtall'),
-#          Group("4", label="0x4", layout='monadtall'),
-#          Group("5", label="0x5", layout='monadtall'),
-#          Group("6", label="0x6", layout='monadtall'),
-#          Group("7", label="0x7", layout='monadtall'),
+#          Group("3", label="0x3", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
+#          Group("4", label="0x4", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
+#          Group("5", label="0x5", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
+#          Group("6", label="0x6", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
+#          Group("7", label="0x7", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
 #          Group("8", label="0x8", layout='monadtall'),
-#          Group("9", label="0x9", layout='monadwide')]
+#          Group("9", label="0x9", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
 
-groups = [Group("1", label="CHAT", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
-         Group("2", label="WWW", layout='monadtall'),
-         Group("3", label="EMACS", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
-         Group("4", label="TERM", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
-         Group("5", label="FILES", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
-         Group("6", label="GAMES", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
-         Group("7", label="PROGRAM", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
-         Group("8", label="AUDIO", layout='monadtall'),
-         Group("9", label="VIDEO", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
+groups = [Group("1", label="", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
+          Group("2", label="", layout='monadtall'),
+          Group("3", label="", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
+          Group("4", label="", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
+          Group("5", label="", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
+          Group("6", label="", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
+          Group("7", label="", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
+          Group("8", label="", layout='monadtall'),
+          Group("9", label="", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
+
+#groups = [Group("1", label="", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
+#         Group("2", label="", layout='monadtall'),
+#         Group("3", label="", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
+#         Group("4", label="", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
+#         Group("5", label="", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
+#         Group("6", label="", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
+#         Group("7", label="", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
+#         Group("8", label="", layout='monadtall'),
+#         Group("9", label="", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
+
+#groups = [Group("1", label="CHAT", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
+#          Group("2", label="WWW", layout='monadtall'),
+#          Group("3", label="EMACS", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
+#          Group("4", label="TERM", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
+#          Group("5", label="FILES", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
+#          Group("6", label="GAMES", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
+#          Group("7", label="PROGRAM", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
+#          Group("8", label="AUDIO", layout='monadtall'),
+#          Group("9", label="VIDEO", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
 
 for i in range(len(groups)):
     keys.append(Key([mod], str((i)), lazy.group[str(i)].toscreen()))
@@ -200,6 +211,7 @@ screens = [
                        padding = 6,
                        ),
               widget.GroupBox(
+                       fontsize = 20,
                        margin_y = 3,
                        margin_x = 0,
                        padding_y = 5,
@@ -332,6 +344,7 @@ screens = [
                        padding = 6,
                        ),
               widget.GroupBox(
+                       fontsize = 20,
                        margin_y = 3,
                        margin_x = 0,
                        padding_y = 5,
@@ -529,9 +542,7 @@ def autostart():
     qtile.cmd_spawn("nitrogen --restore")
     qtile.cmd_spawn("picom --config ~/.config/picom/picom.conf")
     qtile.cmd_spawn("udiskie -a")
-    qtile.cmd_spawn("qbittorrent")
     qtile.cmd_spawn("xrandr --output eDP-1 --off --output DP-1 --mode 1280x1024 --pos 1920x0 --rotate normal --output HDMI-1 --off --output HDMI-1-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-0 --off --output DP-1-1 --off")
-    qtile.cmd_spawn("flameshot")
     qtile.cmd_spawn("nm-applet")
     qtile.cmd_spawn("volumeicon")
     qtile.cmd_spawn("/usr/bin/emacs --daemon")
