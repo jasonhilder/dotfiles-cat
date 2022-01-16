@@ -1,7 +1,4 @@
-#+TITLE: Readme
-#+AUTHOR: Karolina Derwich
-
-* Dotfiles
+#+TITLE: README
 
 | theme          | nord        |
 |----------------+-------------|
