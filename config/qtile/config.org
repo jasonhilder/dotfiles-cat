@@ -56,21 +56,21 @@ keys = [
     Key([mod, "shift"], "e", lazy.spawn("emacs"), desc="Launch emacs"),
     Key([mod], "a", lazy.spawn("pcmanfm"), desc="Launch pcmanfm"),
     Key([mod], "d", lazy.spawn("signal-desktop"), desc="Launch signal"),
-    Key([mod], "g", lazy.spawn("qutebrowser"), desc="Launch qutebrowser"),
+    Key([mod], "g", lazy.spawn("brave"), desc="Launch brave"),
     Key([mod], "s", lazy.spawn("keepassxc"), desc="Launch keepassxc"),
     Key([mod], "v", lazy.spawn("catfish"), desc="catfish"),
     Key([mod], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
 
     # Rofi
-    Key([mod, "shift"], "p", lazy.spawn("rofi -show power-menu -modi power-menu:~/.config/rofi/modules/rofi-power-menu"), desc="Rofi Power Menu"),
+    Key([mod, "shift"], "q", lazy.spawn("rofi -show power-menu -modi power-menu:~/.config/rofi/modules/rofi-power-menu"), desc="Rofi Power Menu"),
     Key([mod], "x", lazy.spawn("rofi -show drun"), desc="Launch rofi"),
 
     # App control
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
+    #Key([mod], "r", lazy.spawncmd(),
+    #    desc="Spawn a command using a prompt widget"),
 
     # Switch between groups
     Key([], 'XF86Back', lazy.screen.prev_group(skip_managed=True, )),
@@ -83,6 +83,7 @@ keys = [
 
     # Switch between screens
     Key([mod], "z", lazy.to_screen(0)),
+    # Key([mod], "x", lazy.to_screen(2)),
     Key([mod], "c", lazy.to_screen(1)),
 
     # Switch between windows
@@ -133,25 +134,15 @@ keys = [
 
 from libqtile.config import Group, Match
 
-#groups = [Group("1", label="0x1", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
-#          Group("2", label="0x2", layout='monadtall'),
-#          Group("3", label="0x3", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
-#          Group("4", label="0x4", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
-#          Group("5", label="0x5", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
-#          Group("6", label="0x6", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
-#          Group("7", label="0x7", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
-#          Group("8", label="0x8", layout='monadtall'),
-#          Group("9", label="0x9", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
-
 groups = [Group("1", label="", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
           Group("2", label="", layout='monadtall'),
           Group("3", label="", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
-          Group("4", label="", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
+          Group("4", label="", layout='monadtall', matches=[Match(wm_class=["kitty", "alacritty", "termite"])]),
           Group("5", label="", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
           Group("6", label="", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
           Group("7", label="", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
-          Group("8", label="", layout='monadtall'),
-          Group("9", label="", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
+          Group("8", label="", layout='monadtall', matches=[Match(wm_class=["deadbeef"])]),
+          Group("9", label="", layout='monadwide', matches=[Match(wm_class=["vlc", "mpv"])])]
 
 #groups = [Group("1", label="", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
 #         Group("2", label="", layout='monadtall'),
@@ -162,16 +153,6 @@ groups = [Group("1", label="", layout='monadtall', matches=[Match(wm_class=["
 #         Group("7", label="", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
 #         Group("8", label="", layout='monadtall'),
 #         Group("9", label="", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
-
-#groups = [Group("1", label="CHAT", layout='monadtall', matches=[Match(wm_class=["signal", "discord", "teams"])]),
-#          Group("2", label="WWW", layout='monadtall'),
-#          Group("3", label="EMACS", layout='monadtall', matches=[Match(wm_class=["emacs"])]),
-#          Group("4", label="TERM", layout='monadtall', matches=[Match(wm_class=["kitty"])]),
-#          Group("5", label="FILES", layout='monadtall', matches=[Match(wm_class=["pcmanfm", "calibre", "catfish"])]),
-#          Group("6", label="GAMES", layout='max', matches=[Match(wm_class=["steam", "lutris", "heroic"])]),
-#          Group("7", label="PROGRAM", layout='max', matches=[Match(wm_class=["virt-manager", "gimp"])]),
-#          Group("8", label="AUDIO", layout='monadtall'),
-#          Group("9", label="VIDEO", layout='monadwide', matches=[Match(wm_class=["qutebrowser"])])]
 
 for i in range(len(groups)):
     keys.append(Key([mod], str((i)), lazy.group[str(i)].toscreen()))
@@ -188,23 +169,23 @@ for i in range(len(groups)):
 #+BEGIN_SRC python
 
 ## Nord
-# colors = [
-#   ["#2e3440", "#2e3440"],  # 0 background
-#    ["#f8f8f2", "#f8f8f2"],  # 1 foreground
-#    ["#3b4252", "#3b4252"],  # 2 background lighter
-#    ["#bf616a", "#bf616a"],  # 3 red
-#    ["#a3be8c", "#a3be8c"],  # 4 green
-#    ["#ebcb8b", "#ebcb8b"],  # 5 yellow
-#    ["#81a1c1", "#81a1c1"],  # 6 blue
-#    ["#b48ead", "#b48ead"],  # 7 magenta
-#    ["#88c0d0", "#88c0d0"],  # 8 cyan
-#    ["#4c566a", "#4c566a"],  # 9 grey
-#    ["#e5e9f0", "#e5e9f0"],  # 10 white
-#    ["#d08770", "#d08770"],  # 11 orange
-#    ["#8fbcbb", "#8fbcbb"],  # 12 super cyan
-#    ["#5e81ac", "#5e81ac"],  # 13 super blue
-#    ["#242831", "#242831"],  # 14 super dark background
-#    ["#708090", "#708090"]   # 15 slate grey
+#colors = [
+#  ["#2e3440", "#2e3440"],  # 0 background
+#  ["#f8f8f2", "#f8f8f2"],  # 1 foreground
+#  ["#3b4252", "#3b4252"],  # 2 background lighter
+#  ["#bf616a", "#bf616a"],  # 3 red
+#  ["#a3be8c", "#a3be8c"],  # 4 green
+#  ["#ebcb8b", "#ebcb8b"],  # 5 yellow
+#  ["#81a1c1", "#81a1c1"],  # 6 blue
+#  ["#b48ead", "#b48ead"],  # 7 magenta
+#  ["#88c0d0", "#88c0d0"],  # 8 cyan
+#  ["#4c566a", "#4c566a"],  # 9 grey
+#  ["#e5e9f0", "#e5e9f0"],  # 10 white
+#  ["#d08770", "#d08770"],  # 11 orange
+#  ["#8fbcbb", "#8fbcbb"],  # 12 super cyan
+#  ["#5e81ac", "#5e81ac"],  # 13 super blue
+#  ["#242831", "#242831"],  # 14 super dark background
+#  ["#708090", "#708090"]   # 15 slate grey
 #]
 
 # Catpuccin
@@ -226,6 +207,26 @@ colors = [
     ["#131020", "#131020"],  # 14 super dark background
     ["#988ba2", "#988ba2"]   # 15 slate grey
 ]
+
+## Dracula
+#colors = [
+#    ["#282a36", "#282a36"],  # 0 background
+#    ["#f8f8f2", "#f8f8f2"],  # 1 foreground
+#    ["#6272a4", "#6272a4"],  # 2 background lighter
+#    ["#ff5555", "#ff5555"],  # 3 red
+#    ["#50fa7b", "#50fa7b"],  # 4 green
+#    ["#f1fa8c", "#f1fa8c"],  # 5 yellow
+#    ["#bd93f9", "#bd93f9"],  # 6 blue
+#    ["#ff79c6", "#ff79c6"],  # 7 maroon
+#    ["#8be9fd", "#8be9fd"],  # 8 cyan
+#    ["#44475a", "#44475a"],  # 9 grey
+#    ["#", "#"],  # 10 white
+#    ["#ffb86c", "#ffb86c"],  # 11 orange
+#    ["#8be9fd", "#8be9fd"],  # 12 super cyan
+#    ["#", "#"],  # 13 super blue
+#    ["#", "#"],  # 14 super dark background
+#    ["#44475a", "#44475a"]   # 15 slate grey
+#]
 
 #+END_SRC
 
@@ -260,8 +261,8 @@ layouts = [
 #+BEGIN_SRC python
 
 widget_defaults = dict(
-    font='Cantarell Bold',
-    fontsize=10,
+    font='CozetteVector Bold',
+    fontsize=11,
     padding=5,
     foreground = colors[15],
     background = colors[0]
@@ -285,6 +286,7 @@ screens = [
                        ),
               widget.GroupBox(
                        fontsize = 20,
+                       font='CozetteVector Bold',
                        margin_y = 3,
                        margin_x = 0,
                        padding_y = 5,
@@ -323,12 +325,6 @@ screens = [
                        padding = 5,
                        ),
               widget.Systray(),
-#              widget.TextBox(
-#                       text = " ⟳",
-#                       padding = 5,
-#                       fontsize = 15,
-#                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e yay -Syu')}
-#                       ),
               widget.Sep(
                        linewidth = 0,
                        padding = 5,
@@ -484,6 +480,7 @@ screens = [
                        padding = 6,
                        ),
               widget.GroupBox(
+                       fontsize = 20,
                        margin_y = 3,
                        margin_x = 0,
                        padding_y = 5,
@@ -551,12 +548,6 @@ screens = [
 * Other settings
 #+BEGIN_SRC python
 
-# if __name__ in ["config", "__main__"]:
-    # screens = init_screens()
-    # widgets_list = init_widgets_list()
-    # widgets_screen1 = init_widgets_screen1()
-    # widgets_screen2 = init_widgets_screen2()
-
 def window_to_prev_group(qtile):
     if qtile.currentWindow is not None:
         i = qtile.groups.index(qtile.currentGroup)
@@ -583,15 +574,6 @@ def switch_screens(qtile):
     i = qtile.screens.index(qtile.current_screen)
     group = qtile.screens[i - 1].group
     qtile.current_screen.set_group(group)
-
-# Drag floating layouts.
-# mouse = [
-    # Drag([mod], "Button1", lazy.window.set_position_floating(),
-         # start=lazy.window.get_position()),
-    # Drag([mod], "Button3", lazy.window.set_size_floating(),
-         # start=lazy.window.get_size()),
-    # Click([mod], "Button2", lazy.window.bring_to_front())
-# ]
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
@@ -628,24 +610,10 @@ def autostart():
     qtile.cmd_spawn("nitrogen --restore")
     qtile.cmd_spawn("picom --config ~/.config/picom/picom.conf")
     qtile.cmd_spawn("udiskie -a")
-    qtile.cmd_spawn("xrandr --output eDP-1 --off --output DP-1 --mode 1280x1024 --pos 1920x0 --rotate normal --output HDMI-1 --off --output HDMI-1-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-0 --off --output DP-1-1 --off")
+    qtile.cmd_spawn("xrandr --output eDP1 --off --output DP1 --mode 1280x1024 --pos 1920x0 --rotate normal --output HDMI1 --off --output VIRTUAL1 --off --output HDMI-1-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-0 --off --output DP-1-1 --off")
     qtile.cmd_spawn("nm-applet")
     qtile.cmd_spawn("volumeicon")
     qtile.cmd_spawn("/usr/bin/emacs --daemon")
-
-#@hook.subscribe.startup_once
-#def autostart():
-#    processes = [
-#        ['nitrogen', '--restore'],
-#        ['picom', '--config', '~/.config/picom/picom.conf'],
-#        ['udiskie', '-a'],
-#        ['/usr/bin/dunst'],
-#        ['/usr/bin/qbittorrent'],
-#        ['/usr/bin/flameshot'],
-#        ['/usr/bin/nm-applet'],
-#        ['/usr/bin/volumeicon'],
-#        ['/usr/bin/emacs', '--daemon']
-#    ]
 
     for p in processes:
         subprocess.Popen(p)
